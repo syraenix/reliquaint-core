@@ -1,0 +1,76 @@
+name: Catalog fix
+description: Report a broken entry, wrong metadata, or a config that no longer launches.
+labels: ["catalog-fix"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for problems with an existing entry in the catalog.
+
+        **Better than a report: a pull request.** If you can fix the entry yourself, see `CONTRIBUTING.md`. Manifests are TOML files; no Rust knowledge is required.
+
+  - type: input
+    id: entry-id
+    attributes:
+      label: Catalog entry id
+      description: The id / filename of the affected entry.
+      placeholder: "qfg2"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - dos
+        - amiga
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem is this?
+      options:
+        - "Game no longer launches / crashes"
+        - "Wrong or missing metadata"
+        - "Broken or illegitimate acquisition link"
+        - "Emulator config issue (audio, video, MIDI, disk swap)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What's wrong, and what did you expect?
+      description: Describe the problem. Include exact error output where you can.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Reliquaint version
+      description: Output of `reliquaint --version`.
+      placeholder: "0.3.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS and distribution, and the acquisition source you used for the game (e.g. GOG, Steam).
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: A corrected config, suggested metadata, or other helpful details.
+      render: toml
+    validations:
+      required: false
