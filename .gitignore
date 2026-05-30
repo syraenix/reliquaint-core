@@ -1,0 +1,27 @@
+# Proprietary emulator images and binaries must never be committed.
+# This is a content repository: only TOML manifests and emulator configs belong here.
+*.exe
+*.adf
+*.adz
+*.dms
+*.ipf
+*.rp9
+*.hdf
+*.img
+*.rom
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor cruft
+*.swp
+*~
+.idea/
+.vscode/
+
+# Local Claude Code settings
+.claude/
+
+# Superpowers brainstorm sessions
+.superpowers/
