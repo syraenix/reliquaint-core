@@ -29,6 +29,8 @@ catalog/
   dos/<id>.conf               # DOSBox-Staging configs (NO [autoexec] section)
   amiga/<id>.toml             # Amiga catalog entries
   amiga/<id>.fs-uae           # FS-UAE configs (optional; launcher falls back to model template)
+companion/
+  <game-id>/                  # optional companion content (walkthroughs, maps, hints): Markdown + images
 .github/
   workflows/validate.yml      # runs `reliquaint tap validate .` on PRs and pushes
   ISSUE_TEMPLATE/

@@ -1,12 +1,5 @@
-# Schema validation for the Reliquaint Core tap.
-#
-# PREREQUISITE / EXPECTED EARLY FAILURE:
-# This workflow runs `reliquaint tap validate .`, which requires the `tap validate`
-# subcommand shipped by launcher v0.3 (launcher docs/v0.3-tasks.md, Task 6.1). Until
-# that release is published, the "Install Reliquaint" step installs a launcher that
-# does not yet have the subcommand, and this workflow WILL FAIL. That failure is
-# expected during bootstrap and is not a problem with the catalog content. Once
-# launcher v0.3 ships, this workflow should pass against the migrated content.
+# Schema validation for the Reliquaint Core tap: installs the launcher and runs
+# `reliquaint tap validate .` (the `tap validate` subcommand shipped in launcher v0.3).
 
 name: validate
 
@@ -24,6 +17,9 @@ jobs:
       - name: Install Reliquaint
         run: |
           set -euo pipefail
+          # Refresh the apt index first: the runner's preinstalled index can be stale,
+          # causing 404s when `apt-get -f install` fetches the launcher's GTK/GStreamer deps.
+          sudo apt-get update
           # Preferred: install the latest released .deb from the launcher repo.
           url="$(curl -fsSL https://api.github.com/repos/syraenix/reliquaint/releases/latest \
             | grep -oE 'https://[^"]+\.deb' | head -n1)"
