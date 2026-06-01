@@ -13,6 +13,8 @@ This repository is the content side of [Reliquaint](https://github.com/syraenix/
 - `catalog/amiga/<id>.toml` — per-game Amiga catalog entries.
 - `catalog/amiga/<id>.fs-uae` — FS-UAE configs (optional; the launcher falls back to a model template when absent).
 
+**Companion content.** Optional per-game guides under `companion/<game-id>/` — walkthroughs, maps, and hint sheets as Markdown plus images (PNG, JPEG, GIF, WebP), with one level of section subdirectory allowed. The launcher renders these in its "Guides" panel; raw HTML and remote/`data:` image URLs are stripped by the sanitizer.
+
 **CI and templates.** `.github/workflows/validate.yml` runs schema validation on every PR. Issue and PR templates under `.github/` cover catalog fixes, new game requests, and contributor attestation.
 
 **Schema reference.** The authoritative schema for every TOML file in this repository is `docs/schema.md` in the launcher repository. Architectural reasoning lives in the ADRs there (`docs/adr/`).

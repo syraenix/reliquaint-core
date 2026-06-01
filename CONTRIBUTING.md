@@ -18,6 +18,8 @@ catalog/
   dos/<id>.conf          # DOSBox-Staging config (no [autoexec] section)
   amiga/<id>.toml        # Amiga catalog entry
   amiga/<id>.fs-uae      # FS-UAE config (optional)
+companion/
+  <game-id>/             # optional walkthroughs, maps, hint sheets (Markdown + images)
 ```
 
 The authoritative TOML schema for every file here is the launcher repo's [`docs/schema.md`](https://github.com/syraenix/reliquaint/blob/develop/docs/schema.md). Architectural reasoning lives in its ADRs (`docs/adr/`). If the schema needs to change, that conversation happens in the launcher repo first.
@@ -30,6 +32,18 @@ The authoritative TOML schema for every file here is the launcher repo's [`docs/
 4. **Fill in** `[game]`, `[meta]`, `[acquisition]`, `[install]`, and `[runtime]` per the schema. Metadata (year, developer, publisher) should be verifiable.
 5. **DOS:** tune the `.conf` for this title (cycles, scalers, MIDI, machine type). Remove any `[autoexec]` section — the launcher composes that at runtime from `runtime.dosbox.entry`.
 6. **Amiga:** set `runtime.fs_uae.model` and `runtime.fs_uae.floppies`. A sibling `.fs-uae` config is optional.
+
+## Companion content
+
+Beyond manifests, a tap can carry **companion content** — per-game walkthroughs, maps, and hint sheets that the launcher renders in its "Guides" panel. Companion files live under `companion/<game-id>/` beside `catalog/`, where `<game-id>` matches a catalog entry's id.
+
+- **Layout.** One directory per game: `companion/<game-id>/`. Markdown (`.md`) plus images (PNG, JPEG, GIF, WebP). One level of subdirectory is allowed as named sections, e.g. `maps/` and `hints/`.
+- **Authoring.** Plain Markdown only — tables, footnotes, and task lists render. Relative `.md` links navigate within the in-app reader; external `http(s)` links open in the browser. Raw HTML is stripped by the sanitizer, so don't submit it.
+- **Images.** Tap-local only, referenced by relative path. Remote and `data:` URLs are stripped; SVG is not supported — rasterize to PNG or WebP.
+- **No proprietary content.** The two hard rules apply here exactly as they do to catalog entries: no game binaries, ROMs, scanned manuals, or other rights-holder material.
+- **Check before you submit.** Run `reliquaint doctor` after editing — it warns on broken image references, stray companion directories, and stripped raw HTML.
+
+Full reference: the launcher repo's tap-maintainer guide ([Companion content](https://github.com/syraenix/reliquaint/blob/develop/docs/tap-maintainer-guide.md#companion-content)) and schema ([Companion content](https://github.com/syraenix/reliquaint/blob/develop/docs/schema.md#companion-content)).
 
 ## Validate before you submit
 
