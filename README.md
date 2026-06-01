@@ -13,6 +13,8 @@ catalog/
   dos/<id>.conf          # DOSBox-Staging configs (no [autoexec] section)
   amiga/<id>.toml        # Amiga catalog entries
   amiga/<id>.fs-uae      # FS-UAE configs (optional; launcher falls back to a model template)
+companion/
+  <game-id>/             # optional walkthroughs, maps, hint sheets (Markdown + images)
 ```
 
 Each entry describes a game's identity, metadata, runtime, and **how to legally acquire it** — it never contains or links to proprietary game files.
