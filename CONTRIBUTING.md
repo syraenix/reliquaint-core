@@ -22,7 +22,7 @@ companion/
   <game-id>/             # optional walkthroughs, maps, hint sheets (Markdown + images)
 ```
 
-The authoritative TOML schema for every file here is the launcher repo's [`docs/schema.md`](https://github.com/syraenix/reliquaint/blob/develop/docs/schema.md). Architectural reasoning lives in its ADRs (`docs/adr/`). If the schema needs to change, that conversation happens in the launcher repo first.
+The authoritative TOML schema for every file here is the launcher repo's [`docs/schema.md`](https://github.com/syraenix/reliquaint/blob/develop/docs/schema.md).
 
 ## Adding a catalog entry
 
